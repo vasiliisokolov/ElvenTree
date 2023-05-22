@@ -2,14 +2,16 @@
 #include <cassert>
 #include <vector>
 
+//class for tree and branches:
 class Branch
 {
     Branch* parent = nullptr;
     int branchCount = 0;
     std::vector<Branch*> branches;
-    std::string elvenName;
+    std::string elvenName = "";
 
 public:
+    //get index of the branch
     Branch* getBranch(int index)
     {
         if (index < 0) return nullptr;
@@ -21,7 +23,14 @@ public:
     {
         return branchCount;
     }
-
+    
+    //input Elf's name
+    void loadElf()
+    {
+        std::cout << "Enter elf's name: ";
+        std::cin >> elvenName;
+    }
+    //search parent
     Branch* getTopBranch()
     {
         //Если это дерево
@@ -32,11 +41,7 @@ public:
         return parent->getTopBranch();
     }
 
-    void loadElf()
-    {
-        std::cout << "Enter elf's name: ";
-        std::cin >> elvenName;
-    }
+    
 
     Branch(Branch* inParent, int inCount)
     {
@@ -58,12 +63,15 @@ public:
 
     void makeWood()
     {
+        
         for (int i = 0; i < 5; i++)
         {
+            //make one tree
             int largeBranchCount = (3 + rand() % 5);
             Branch* branch = new Branch(nullptr, largeBranchCount);
             for (int j = 0; j < largeBranchCount; j++)
             {
+                //make one large branch
                 int mediumBranchCount = (2 + rand() % 3);
                
             }
