@@ -60,6 +60,7 @@ public:
             Branch* childBranch = new Branch (parent, childCount);
             branches.push_back(childBranch);
         }*/
+        
     }
 };
 
@@ -82,10 +83,12 @@ public:
                 //make one large branch
                 int mediumBranchCount = (2 + rand() % 3);
                 Branch* largeBranch = new Branch(tree, mediumBranchCount);
+                largeBranch->loadElf();
                 for (int k = 0; k < mediumBranchCount; k++)
                 {
                     //make one medium branch
                     Branch* mediumBranch = new Branch(largeBranch, 0);
+                    mediumBranch->loadElf();
                     largeBranch->loadBranches(mediumBranch);
                 }
                 tree->loadBranches(largeBranch);
