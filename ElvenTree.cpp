@@ -30,6 +30,13 @@ public:
         std::cout << "Enter elf's name: ";
         std::cin >> elvenName;
     }
+
+    //load branches
+    void loadBranches(Branch* input)
+    {
+        branches.push_back(input);
+    }
+   
     //search parent
     Branch* getTopBranch()
     {
@@ -48,9 +55,10 @@ public:
 
         parent = inParent;
         branchCount = inCount;
-        /*for (int i = 0; i < branchCount; i++)
+        /* for (int i = 0; i < branchCount; i++)
         {
-            branches.push_back(new Branch(parent, branchCount));
+            Branch* childBranch = new Branch (parent, childCount);
+            branches.push_back(childBranch);
         }*/
     }
 };
@@ -68,14 +76,21 @@ public:
         {
             //make one tree
             int largeBranchCount = (3 + rand() % 5);
-            Branch* branch = new Branch(nullptr, largeBranchCount);
+            Branch* tree = new Branch(nullptr, largeBranchCount);
             for (int j = 0; j < largeBranchCount; j++)
             {
                 //make one large branch
                 int mediumBranchCount = (2 + rand() % 3);
-               
+                Branch* largeBranch = new Branch(tree, mediumBranchCount);
+                for (int k = 0; k < mediumBranchCount; k++)
+                {
+                    //make one medium branch
+                    Branch* mediumBranch = new Branch(largeBranch, 0);
+                    largeBranch->loadBranches(mediumBranch);
+                }
+                tree->loadBranches(largeBranch);
             }
-
+            wood.push_back(tree);
         }
     }
 };
