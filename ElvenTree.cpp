@@ -31,6 +31,11 @@ public:
         std::cin >> elvenName;
     }
 
+    std::string getName()
+    {
+        return elvenName;
+    }
+
     //load branches
     void loadBranches(Branch* input)
     {
@@ -65,19 +70,23 @@ public:
     //search elf
     Branch* searchElf(std::string target)
     {
-        if (elvenName == target)
+        
+        for (int i = 0; i < branchCount; i++)
         {
-             
+            if (branches[i]->getName() == target)
+                return branches[i];
+            for (int j = 0; j < branches[i]->getCount(); j++)
+            {
+                branches[i]->getBranch(j)->searchElf(target);
+            }
         }
     }
 
     //search elf's neighbours:
-    void neighboursSearch(std::string target)
+    int neighboursSearch()
     {
-        if (elvenName == target)
-        {
-
-        }
+        int count;
+        
     }
 };
 
@@ -113,6 +122,11 @@ public:
             wood.push_back(tree);
         }
     }
+
+    Branch* getTree(int index)
+    {
+        return wood[index];
+    }
 };
 
 int main()
@@ -123,4 +137,10 @@ int main()
     std::string target;
     std::cout << "Choose elven's name: ";
     std::cin >> target;
+    Branch* find;
+    for (int i = 0; i < 5; i++)
+    {
+        Branch* find = forest.getTree(i)->searchElf(target);
+    }
+
 }
