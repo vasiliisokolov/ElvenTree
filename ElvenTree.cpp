@@ -47,9 +47,8 @@ public:
         //Если это маленькая ветка
         return parent->getTopBranch();
     }
-
-    
-
+       
+    //constructor
     Branch(Branch* inParent, int inCount)
     {
 
@@ -61,6 +60,24 @@ public:
             branches.push_back(childBranch);
         }*/
         
+    }
+
+    //search elf
+    Branch* searchElf(std::string target)
+    {
+        if (elvenName == target)
+        {
+             
+        }
+    }
+
+    //search elf's neighbours:
+    void neighboursSearch(std::string target)
+    {
+        if (elvenName == target)
+        {
+
+        }
     }
 };
 
@@ -100,5 +117,10 @@ public:
 
 int main()
 {
-    Branch* branch = new Branch(nullptr,4);
+    std::cout << "Let's make wood and populate them.";
+    Forest forest;
+    forest.makeWood();
+    std::string target;
+    std::cout << "Choose elven's name: ";
+    std::cin >> target;
 }
