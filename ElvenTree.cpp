@@ -90,7 +90,7 @@ public:
     int neighboursSearch()
     {
         int count = 0;
-        if (this->getCount() > 0)
+        if (branchCount > 0)
         {
             for (int i = 0; i < branchCount; i++)
             {
@@ -100,6 +100,7 @@ public:
         else
         {
             parent->neighboursSearch();
+            count--;
         }
         return count;
         
@@ -146,6 +147,16 @@ public:
     {
         return wood[index];
     }
+
+    Branch* find(std::string target)
+    {
+              
+        for (int i = 0; i < 5; i++)
+        {
+            return wood[i]->searchElf(target);
+            
+        }
+    }
 };
 
 int main()
@@ -156,10 +167,6 @@ int main()
     std::string target;
     std::cout << "Choose elven's name: ";
     std::cin >> target;
-    Branch* find = nullptr;
-    for (int i = 0; i < 5; i++)
-    {
-        Branch* find = forest.getTree(i)->searchElf(target);
-    }
-    std::cout << "This Elf has " << find->neighboursSearch() << "neighbours!" << std::endl;
+    
+    std::cout << "This Elf has " << forest.find(target)->neighboursSearch() << "neighbours!" << std::endl;
 }
