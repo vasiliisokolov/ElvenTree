@@ -154,5 +154,5 @@ int main()
     {
         Branch* find = forest.getTree(i)->searchElf(target);
     }
-    std::cout << "This Tlf has " << find->neighboursSearch() << "neighbours!" << std::endl;
+    std::cout << "This Elf has " << find->neighboursSearch() << "neighbours!" << std::endl;
 }
