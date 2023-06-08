@@ -85,7 +85,19 @@ public:
     //search elf's neighbours:
     int neighboursSearch()
     {
-        int count;
+        int count = 0;
+        if (branchCount > 0)
+        {
+            for (int i = 0; i < branchCount; i++)
+            {
+                if (branches[i]->elvenName != "") count++;
+            }
+        }
+        else
+        {
+            parent->neighboursSearch();
+        }
+        return count;
         
     }
 };
@@ -137,10 +149,10 @@ int main()
     std::string target;
     std::cout << "Choose elven's name: ";
     std::cin >> target;
-    Branch* find;
+    Branch* find = nullptr;
     for (int i = 0; i < 5; i++)
     {
         Branch* find = forest.getTree(i)->searchElf(target);
     }
-
+    std::cout << "This Tlf has " << find->neighboursSearch() << "neighbours!" << std::endl;
 }
