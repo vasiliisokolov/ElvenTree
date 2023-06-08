@@ -27,8 +27,11 @@ public:
     //input Elf's name
     void loadElf()
     {
+        std::string temp;
         std::cout << "Enter elf's name: ";
-        std::cin >> elvenName;
+        std::cin >> temp;
+        if (temp == "None");
+        else elvenName = temp;
     }
 
     std::string getName()
@@ -80,17 +83,18 @@ public:
                 branches[i]->getBranch(j)->searchElf(target);
             }
         }
+        return nullptr;
     }
 
     //search elf's neighbours:
     int neighboursSearch()
     {
         int count = 0;
-        if (branchCount > 0)
+        if (this->getCount() > 0)
         {
             for (int i = 0; i < branchCount; i++)
             {
-                if (branches[i]->elvenName != "") count++;
+                if (branches[i]->getName() != "") count++;
             }
         }
         else
@@ -110,16 +114,19 @@ public:
 
     void makeWood()
     {
-        
+        std::string n;
         for (int i = 0; i < 5; i++)
         {
+            std::cout << "Tree #" << i << std::endl;
             //make one tree
-            int largeBranchCount = (3 + rand() % 5);
+            int largeBranchCount = (3 + rand() % 3);
+            std::cout << "lBranches:" << largeBranchCount << std::endl;
             Branch* tree = new Branch(nullptr, largeBranchCount);
             for (int j = 0; j < largeBranchCount; j++)
             {
                 //make one large branch
-                int mediumBranchCount = (2 + rand() % 3);
+                int mediumBranchCount = (2 + rand() % 2);
+                std::cout << "mBranches:" << mediumBranchCount << std::endl;
                 Branch* largeBranch = new Branch(tree, mediumBranchCount);
                 largeBranch->loadElf();
                 for (int k = 0; k < mediumBranchCount; k++)
