@@ -5,10 +5,10 @@
 //class for tree and branches:
 class Branch
 {
-    Branch* parent = nullptr;
-    int branchCount = 0;
+    Branch* parent;
+    int branchCount;
     std::vector<Branch*> branches;
-    std::string elvenName = "";
+    std::string elvenName;
 
 public:
     //get index of the branch
@@ -62,6 +62,7 @@ public:
 
         parent = inParent;
         branchCount = inCount;
+        elvenName = "";
         /* for (int i = 0; i < branchCount; i++)
         {
             Branch* childBranch = new Branch (parent, childCount);
@@ -156,12 +157,14 @@ public:
             return wood[i]->searchElf(target);
             
         }
+        return nullptr;
     }
+    
 };
 
 int main()
 {
-    std::cout << "Let's make wood and populate them.";
+    std::cout << "Let's make wood and populate them." << std::endl;
     Forest forest;
     forest.makeWood();
     std::string target;
